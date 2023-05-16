@@ -13,3 +13,6 @@ Scenario3.py
 
 FourRooms.py 
     This file has the helper functions necessary to run the Q-learning algorithm. 
+    
+ To run my files you will use the Makefile where you will just type 'Make' on the terminal but there are three scenarios
+ each ask the user if he/she will like to use stochastic, that's 'yes/no' answer for each file.
