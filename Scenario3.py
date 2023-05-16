@@ -20,16 +20,15 @@ def main():
     q_table2 = np.zeros((13, 13, 4))
     q_table3 = np.zeros((13, 13, 4))
 
-    le_n = 0.8
-    gamma = 0.8
+    alpha = 0.8  # learning rate
+    gamma = 0.8  # discount factor
 
     exploration_rate = 1
     max_exploration_rate = 0.1
     min_exploration_rate = 0.01
     exploration_decay_rate = 0.001
 
-    # define an epsilon greedy algorithm that will choose which action to take next (i.e., where to move next)
-    # Exploration-exploitation trade-off
+    # Epsilon greedy algorithm
     def next_action(current_row_index, current_column_index, epsilon):
         exploration_rate_threshold = random.uniform(0, 1)
         if exploration_rate_threshold < epsilon:
@@ -95,7 +94,7 @@ def main():
             # TD and update the Q-table for the previous state and action pair
             old_q_value = q_table[old_row_index, old_column_index, action_index]
             temporal_difference = rewards + (gamma * np.max(q_table[row_index, column_index])) - old_q_value
-            new_q_value = old_q_value + (le_n * temporal_difference)
+            new_q_value = old_q_value + (alpha * temporal_difference)
 
             # q-table updates
             if packagesRemaining == 3:

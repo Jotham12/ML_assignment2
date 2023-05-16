@@ -16,8 +16,8 @@ def main():
         print("Training started using Deterministic Actions")
 
     # Initialize the parameters
-    ln = 0.8
-    gamma = 0.8
+    alpha = 0.8  # learning rate
+    gamma = 0.8  # discount factor
 
     exploration_rate = 1
     max_exploration_rate = 1
@@ -65,7 +65,7 @@ def main():
             # TD and update
             old_q_value = q_table[old_row_index, old_column_index, action_index]
             temporal_difference = rewards + (gamma * np.max(q_table[row_index, column_index])) - old_q_value
-            new_q_value = old_q_value + (ln * temporal_difference)
+            new_q_value = old_q_value + (alpha * temporal_difference)
             q_table[old_row_index, old_column_index, action_index] = new_q_value
 
             if isTerminal or packagesRemaining == 0:
